@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Prediction</title>
+    <style>
+/* Apply flexbox to the body to center the container */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0f7fa; /* Light blue background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 100vh; /* Full height of the viewport */
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%; /* Ensure container takes up full width up to max */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center text inside the container */
+}
+
+h2 {
+    color: #007bff; /* Blue heading */
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #007bff; /* Blue button */
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.result {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa; /* Light gray result box */
+    border: 1px solid #ddd;
+    color: #343a40; /* Dark gray text */
+    text-align: left; /* Left-align the result content */
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sentiment Analysis</h2>
+        <form method="POST" action="/predict">
+            <label for="sentence">Enter a sentence:</label>
+            <input type="text" id="sentence" name="sentence" required>
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction_bernoulli and prediction_multinomial %}
+        <div class="result">
+            <strong>Sentence:</strong> {{ sentence }}<br>
+            <strong>Bernoulli Prediction:</strong> {{ prediction_bernoulli }}<br>
+            <strong>Multinomial Prediction:</strong> {{ prediction_multinomial }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
