@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNN Model Evaluation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kết quả Mô hình KNN</h1>
+    <p><strong>Accuracy:</strong> {{ accuracy }}</p>
+    <p><strong>Recall:</strong> {{ recall }}</p>
+    <p><strong>Precision:</strong> {{ precision }}</p>
+    <h2>Confusion Matrix</h2>
+    <table>
+        <tr>
+            <th></th>
+            <th>Predicted 0</th>
+            <th>Predicted 1</th>
+            <th>Predicted 2</th>
+        </tr>
+        {% for row in cm %}
+        <tr>
+            <th>Actual {{ loop.index0 }}</th>
+            {% for value in row %}
+            <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
